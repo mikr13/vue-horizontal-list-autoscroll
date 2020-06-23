@@ -8,7 +8,9 @@ This project aim is to add support for:
 * Autoscroll on different breakpoints (planned in 2.0.0)
 * Vuetify (planned in 2.0.0)
 
-[![vue-horizontal-list-autoscroll screenshot](demo.png)](https://github.com/MiKr13/vue-horizontal-list-autoscroll)
+## Demo
+[![vue-horizontal-list-autoscroll gif](vue-horizontal-list-autoscroll.gif)](https://github.com/MiKr13/vue-horizontal-list-autoscroll)
+
 
 ## Installation
 ```shell script
