@@ -1,18 +1,20 @@
-# vue-horizontal-list
-A pure vue horizontal list implementation with minimal dependencies, ssr support, mobile friendly, touch friendly and responsive. 
-I created this because I like how AirBnb does their horizontal list, I couldn't find a library that is simple and close to it.
+# vue-horizontal-list-autoscroll
+A pure vue horizontal list implementation with minimal dependencies, ssr support, mobile friendly, touch friendly and responsive now with auto scroll
 
-Check it out: [LIVE DEMO](https://nuxt-app.now.sh/vue-horizontal-list),
-Source is here: [source code](https://github.com/fuxingloh/nuxt-app/blob/master/components/examples/ExampleHorizontalList.vue).
+This project is built on top of [vue-horizontal-list](https://github.com/fuxingloh/vue-horizontal-list), huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also.
 
-[![vue-horizontal-list screenshot](demo.png)](https://nuxt-app.now.sh/vue-horizontal-list)
+This project aim is to add support for:
+* Autoscroll
+* Autoscroll on different breakpoints (planned in 2.0.0)
+* Vuetify (planned in 2.0.0)
 
+[![vue-horizontal-list-autoscroll screenshot](demo.png)](https://github.com/MiKr13/vue-horizontal-list-autoscroll)
 
 ## Installation
 ```shell script
-npm i vue-horizontal-list
+npm i vue-horizontal-list-autoscroll
 # or
-yarn add vue-horizontal-list
+yarn add vue-horizontal-list-autoscroll
 ```
 
 ## Features
@@ -20,6 +22,7 @@ yarn add vue-horizontal-list
 * SSR supported
 * Mobile touch screen friendly
 * Invisible scroll bar for consistent Windows and MacOS browsing experience.
+* Autoscroll feature
 * Snap to the nearest item in the horizontal-list when scrolling.
 * Windowed & Full-screen mode
   * The windowed mode will respect the container and not show overflowing item
@@ -39,6 +42,12 @@ const options = {
     // padding between each item
     padding: 12 
   },
+  autoscroll: {
+    // auto scroll feature enabled or not
+    enabled: true,
+    // if enabled, the interval in seconds, by default 10 seconds
+    interval: 15,
+  }
   list: {
     // css class for the parent of item
     class: '', 
@@ -51,7 +60,7 @@ const options = {
   },
   responsive: [
     // responsive breakpoints to calculate how many items to show in the list at each width interval
-    // it will always fall back to these: 
+    // it will always fall back to these:
     {end: 576, size: 1},
     {start: 576, end: 768, size: 2},
     {start: 768, end: 992, size: 3},
@@ -74,7 +83,7 @@ const options = {
 - Width catch all, show 3
 
 ```vue
-<vue-horizontal-list :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}]}">
+<vue-horizontal-list :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll: { enabled: true }}">
   <template v-slot:default="{item}">
     <div class="item">
       <h5>{{item.title}}</h5>
@@ -119,10 +128,14 @@ const options = {
             {start: 768, end: 992, size: 3},
             {size: 4}
           ],
+          autoscroll: {
+            enabled: true,
+            interval: 15
+          },
           list: {
             // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
             windowed: 1200,
-            
+
             // Because: #app {padding: 80px 24px;}
             padding: 24
           }
@@ -160,4 +173,4 @@ const options = {
 ```
 
 ## Contributing
-For any question or feature request please feel free to create an [issue](https://github.com/fuxingloh/vue-horizontal-list/issues/new) or [pull request](https://github.com/fuxingloh/vue-horizontal-list/pulls).
+For any question or feature request please feel free to create an [issue](https://github.com/MiKr13/vue-horizontal-list-autoscroll/issues/new) or [pull request](https://github.com/MiKr13/vue-horizontal-list-autoscroll/pulls).

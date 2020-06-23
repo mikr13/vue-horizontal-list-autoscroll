@@ -85,7 +85,9 @@
         width: {
           container: 0,
           window: 576
-        }
+        },
+
+        interval: null
       }
     },
     mounted() {
@@ -96,9 +98,11 @@
 
       this.$resize()
       window.addEventListener('resize', this.$resize)
+      this._options.autoscroll.enabled && this.autoscroll()
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.$resize)
+      clearInterval(interval)
     },
     computed: {
       _options() {
@@ -108,6 +112,10 @@
           navigation: {
             start: options && options.navigation && options.navigation.start || 992,
             color: options && options.navigation && options.navigation.color || '#000',
+          },
+          autoscroll: {
+            enabled: options && options.autoscroll && options.autoscroll.enabled || false,
+            interval: options && options.autoscroll && parseInt(options.autoscroll.interval, 10) >= 1 && parseInt(options.autoscroll.interval, 10) || 10
           },
           item: {
             class: options && options.item && options.item.class || '',
@@ -238,6 +246,17 @@
       next() {
         this.go(this.position + this._size)
       },
+
+      autoscroll() {
+        this.interval = setInterval(() => {
+          if (this._hasNext) {
+            this.next();
+          }
+          // else {
+          //   this.$refs.list.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+          // }
+        }, this._options.autoscroll.interval * 1000)
+      }
     }
   }
 </script>
