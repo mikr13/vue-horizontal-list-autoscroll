@@ -102,7 +102,7 @@
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.$resize)
-      clearInterval(interval)
+      clearInterval(this.interval)
     },
     computed: {
       _options() {
