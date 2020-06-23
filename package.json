@@ -10,6 +10,7 @@
     "type": "git",
     "url": "https://github.com/MiKr13/vue-horizontal-list-autoscroll.git"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "bugs": "https://github.com/MiKr13/vue-horizontal-list-autoscroll/issues",
   "keywords": [
     "vue",
