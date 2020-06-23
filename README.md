@@ -83,14 +83,14 @@ const options = {
 - Width catch all, show 3
 
 ```vue
-<vue-horizontal-list :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll: { enabled: true }}">
+<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true }}">
   <template v-slot:default="{item}">
     <div class="item">
       <h5>{{item.title}}</h5>
       <p>{{item.content}}</p>
     </div>
   </template>
-</vue-horizontal-list>
+</vue-horizontal-list-autoscroll>
 ```
 
 ### Full Example
@@ -98,26 +98,26 @@ const options = {
 <template>
   <div id="app">
     <section>
-      <vue-horizontal-list :items="items" :options="options">
+      <vue-horizontal-list-autoscroll :items="items" :options="options">
         <template v-slot:default="{item}">
           <div class="item">
             <h5>{{item.title}}</h5>
             <p>{{item.content}}</p>
           </div>
         </template>
-      </vue-horizontal-list>
+      </vue-horizontal-list-autoscroll>
     </section>
   </div>
 </template>
 
 <script>
   import Vue from 'vue';
-  import VueHorizontalList from '@/vue-horizontal-list.vue';
+  import VueHorizontalListAutoscroll from '@/vue-horizontal-list-autoscroll.vue';
 
   export default Vue.extend({
     name: 'ServeDev',
     components: {
-      VueHorizontalList
+      VueHorizontalListAutoscroll
     },
     data() {
       return {

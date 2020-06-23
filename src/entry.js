@@ -5,7 +5,7 @@ import component from '@/vue-horizontal-list-autoscroll.vue';
 const install = function(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('VueHorizontalListAutoScroll', component);
+  Vue.component('VueHorizontalListAutoscroll', component);
 };
 
 // Create module definition for Vue.use()

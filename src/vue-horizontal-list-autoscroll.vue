@@ -35,7 +35,7 @@
   smoothscroll.polyfill();
 
   export default {
-    name: "VueHorizontalList",
+    name: "VueHorizontalListAutoscroll",
     props: {
 
       /**
