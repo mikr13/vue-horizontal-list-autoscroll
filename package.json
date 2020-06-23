@@ -1,8 +1,8 @@
 {
   "name": "vue-horizontal-list-autoscroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A pure vue ssr friendly horizontal list implementation with autoscroll feature.",
-  "author": "Mihir Kumar",
+  "author": "Mihir Kumar <https://linkedin.com/in/mikr13>",
   "contributors": [
     "fuxingloh"
   ],
