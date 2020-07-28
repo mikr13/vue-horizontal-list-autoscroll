@@ -1,4 +1,23 @@
-# vue-horizontal-list-autoscroll
+<h1 align="center">👋 vue-horizontal-list-autoscroll 🕶</h1>
+<h3 align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.1.5-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/MiKr13/S3-Bucket-Download/#README" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://www.npmjs.com/package/vue-horizontal-list-autoscroll" target="_blank">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dw/vue-horizontal-list-autoscroll">                                       
+  </a>
+  <a href="https://twitter.com/mikr1306" target="_blank">
+    <img alt="Twitter: mikr1306" src="https://img.shields.io/twitter/follow/mikr1306.svg?style=social" />
+  </a>
+  <a href="https://github.com/mikr13" target="_blank">
+    <img alt="GitHub followers" src="https://img.shields.io/github/followers/mikr13?style=social">                                       
+  </a>
+</h3>
+
 A pure vue horizontal list implementation with minimal dependencies, ssr support, mobile friendly, touch friendly and responsive now with auto scroll
 
 This project is built on top of [vue-horizontal-list](https://github.com/fuxingloh/vue-horizontal-list), huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also.
