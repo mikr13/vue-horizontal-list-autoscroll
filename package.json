@@ -19,7 +19,13 @@
     "scroll",
     "autoscroll",
     "auto-scroll",
+    "scroller",
     "scroll view",
+    "card",
+    "snapping",
+    "ssr",
+    "ssr ready",
+    "native",
     "airbnb list"
   ],
   "license": "MIT",
