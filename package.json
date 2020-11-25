@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "smoothscroll-polyfill": "^0.4.4",
-    "snyk": "^1.349.0"
+    "snyk": "^1.425.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
