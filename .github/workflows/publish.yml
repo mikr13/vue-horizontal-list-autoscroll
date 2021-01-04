@@ -1,8 +1,9 @@
-name: Publish
+name: Node.js Package
 
 on:
-  release:
-    types: [ published ]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -15,11 +16,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: yarn install --frozen-lockfile
-
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_MESSAGE: 'release: update package version'
 
       - run: yarn build
 

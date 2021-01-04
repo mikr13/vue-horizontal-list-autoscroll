@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Custom Prev & Next Nav Icon</h2>
-    <vue-horizontal-list :items="items" :options="options">
+    <vue-horizontal-list-autoscroll :items="items" :options="options">
       <template v-slot:nav-prev>
         <div>👈</div>
       </template>
@@ -16,17 +16,17 @@
           <p>{{ item.content }}</p>
         </div>
       </template>
-    </vue-horizontal-list>
+    </vue-horizontal-list-autoscroll>
   </div>
 </template>
 
 <script>
-import VueHorizontalList from "@/vue-horizontal-list-autoscroll.vue";
+import VueHorizontalListAutoscroll from "@/vue-horizontal-list-autoscroll.vue";
 
 export default {
   name: "nav-prev-next-slot",
   components: {
-    VueHorizontalList,
+    VueHorizontalListAutoscroll,
   },
   data() {
     return {

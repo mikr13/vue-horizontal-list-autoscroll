@@ -2,7 +2,7 @@
   <div>
     <h2>Image Two</h2>
 
-    <vue-horizontal-list :items="items" :options="options">
+    <vue-horizontal-list-autoscroll :items="items" :options="options">
       <template v-slot:default="{ item }">
         <div class="item">
           <div class="image-boxed">
@@ -15,17 +15,17 @@
           </div>
         </div>
       </template>
-    </vue-horizontal-list>
+    </vue-horizontal-list-autoscroll>
   </div>
 </template>
 
 <script>
-import VueHorizontalList from "@/vue-horizontal-list-autoscroll.vue";
+import VueHorizontalListAutoscroll from "@/vue-horizontal-list-autoscroll.vue";
 
 export default {
   name: "image-two",
   components: {
-    VueHorizontalList,
+    VueHorizontalListAutoscroll,
   },
   data() {
     return {

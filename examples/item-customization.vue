@@ -2,24 +2,24 @@
   <div>
     <h2>Item Customization</h2>
     <p>Remove padding and add a css class 'item-custom-name' to item.</p>
-    <vue-horizontal-list :items="items" :options="options">
+    <vue-horizontal-list-autoscroll :items="items" :options="options">
       <template v-slot:default="{ item }">
         <div class="item">
           <h3>{{ item.title }}</h3>
           <p>{{ item.content }}</p>
         </div>
       </template>
-    </vue-horizontal-list>
+    </vue-horizontal-list-autoscroll>
   </div>
 </template>
 
 <script>
-import VueHorizontalList from "@/vue-horizontal-list-autoscroll.vue";
+import VueHorizontalListAutoscroll from "@/vue-horizontal-list-autoscroll.vue";
 
 export default {
   name: "item-customization",
   components: {
-    VueHorizontalList,
+    VueHorizontalListAutoscroll,
   },
   data() {
     return {

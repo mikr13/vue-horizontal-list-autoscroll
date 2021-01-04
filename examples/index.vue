@@ -34,7 +34,7 @@
 
 <script>
 import Vue from "vue";
-import VueHorizontalList from "@/vue-horizontal-list-autoscroll.vue";
+import VueHorizontalListAutoscroll from "@/vue-horizontal-list-autoscroll.vue";
 import Simple from "./simple";
 import FullWidth from "./full-width";
 import Responsive from "./responsive";
@@ -59,7 +59,10 @@ export default Vue.extend({
     Responsive,
     FullWidth,
     Simple,
-    VueHorizontalList,
+    VueHorizontalListAutoscroll,
+  },
+  mounted() {
+    document.title = "Vue Horizontal List AutoScroll (MiKr13)";
   },
 });
 </script>

@@ -38,7 +38,7 @@ yarn add vue-horizontal-list-autoscroll
 ## Basic usage
 
 ```vue
-<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
+<vue-horizontal-list-autoscroll-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
   <template v-slot:default="{item}">
     <div class="item">
       <h5>{{item.title}}</h5>
