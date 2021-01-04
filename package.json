@@ -1,10 +1,10 @@
 {
   "name": "vue-horizontal-list-autoscroll",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A pure vue ssr friendly horizontal list implementation with autoscroll feature.",
   "author": "Mihir Kumar <https://linkedin.com/in/mikr13>",
   "contributors": [
-    "fuxingloh"
+    "mikr13"
   ],
   "repository": {
     "type": "git",
@@ -24,33 +24,38 @@
     "card",
     "snapping",
     "ssr",
-    "ssr ready",
-    "native",
     "airbnb list"
   ],
   "license": "MIT",
   "private": false,
   "main": "dist/vue-horizontal-list-autoscroll.ssr.js",
+  "browser": "dist/vue-horizontal-list-autoscroll.esm.js",
   "module": "dist/vue-horizontal-list-autoscroll.esm.js",
   "unpkg": "dist/vue-horizontal-list-autoscroll.min.js",
+  "files": [
+    "dist/*",
+    "src/**/*.vue"
+  ],
   "scripts": {
-    "serve": "vue-cli-service serve src/serve-dev.js",
+    "serve": "vue-cli-service serve examples/serve.js",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "examples:serve": "vue-cli-service serve examples/serve.js",
+    "examples:build": "vue-cli-service build examples/serve.js",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "smoothscroll-polyfill": "^0.4.4",
-    "snyk": "^1.425.4"
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@rollup/plugin-alias": "^2.2.0",
     "@rollup/plugin-replace": "^2.3.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "@vue/cli-plugin-babel": "^4.4.5",
     "@vue/cli-service": "^4.4.5",
     "cross-env": "^6.0.3",
@@ -63,15 +68,10 @@
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },
-  "resolutions": {
-    "minimist": "^1.2.2",
-    "acorn@>=7.0.0 <7.1.1": "^7.1.1"
-  },
   "peerDependencies": {
     "vue": "^2.6.11"
   },
   "engines": {
     "node": ">=8"
-  },
-  "snyk": true
+  }
 }

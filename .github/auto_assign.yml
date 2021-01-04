@@ -1,0 +1,7 @@
+addAssignees: author
+addReviewers: true
+
+reviewers:
+  - mikr13
+
+numberOfReviewers: 0

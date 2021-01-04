@@ -1,39 +1,41 @@
 // rollup.config.js
-import fs from 'fs';
-import path from 'path';
-import vue from 'rollup-plugin-vue';
-import alias from '@rollup/plugin-alias';
-import commonjs from 'rollup-plugin-commonjs';
-import replace from '@rollup/plugin-replace';
-import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import minimist from 'minimist';
+import fs from "fs";
+import path from "path";
+import vue from "rollup-plugin-vue";
+import alias from "@rollup/plugin-alias";
+import commonjs from "@rollup/plugin-commonjs";
+import replace from "@rollup/plugin-replace";
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import minimist from "minimist";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 // Get browserslist config and remove ie from es build targets
-const esbrowserslist = fs.readFileSync('./.browserslistrc')
+const esbrowserslist = fs
+  .readFileSync("./.browserslistrc")
   .toString()
-  .split('\n')
-  .filter((entry) => entry && entry.substring(0, 2) !== 'ie');
+  .split("\n")
+  .filter((entry) => entry && entry.substring(0, 2) !== "ie");
 
 const argv = minimist(process.argv.slice(2));
 
-const projectRoot = path.resolve(__dirname, '..');
+const projectRoot = path.resolve(__dirname, "..");
 
 const baseConfig = {
-  input: 'src/entry.js',
+  input: "src/entry.js",
   plugins: {
     preVue: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      }),
-      commonjs(),
       alias({
-        resolve: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+        resolve: [".js", ".jsx", ".ts", ".tsx", ".vue"],
         entries: {
-          '@': path.resolve(projectRoot, 'src'),
+          "@": path.resolve(projectRoot, "src"),
         },
       }),
     ],
+    replace: {
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      "process.env.ES_BUILD": JSON.stringify("false"),
+    },
     vue: {
       css: true,
       template: {
@@ -41,8 +43,8 @@ const baseConfig = {
       },
     },
     babel: {
-      exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      exclude: "node_modules/**",
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
     },
   },
 };
@@ -52,8 +54,7 @@ const baseConfig = {
 const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
-  'vue',
-  'smoothscroll-polyfill'
+  "vue",
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -61,53 +62,59 @@ const external = [
 const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
-  vue: 'Vue',
-  'smoothscroll-polling': 'smoothscroll'
+  vue: "Vue",
 };
 
 // Customize configs for individual targets
 const buildFormats = [];
-if (!argv.format || argv.format === 'es') {
+if (!argv.format || argv.format === "es") {
   const esConfig = {
     ...baseConfig,
     external,
     output: {
-      file: 'dist/vue-horizontal-list-autoscroll.esm.js',
-      format: 'esm',
-      exports: 'named',
+      file: "dist/vue-horizontal-list-autoscroll.esm.js",
+      format: "esm",
+      exports: "named",
     },
     plugins: [
+      replace({
+        ...baseConfig.plugins.replace,
+        "process.env.ES_BUILD": JSON.stringify("true"),
+      }),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       babel({
         ...baseConfig.plugins.babel,
         presets: [
           [
-            '@babel/preset-env',
+            "@babel/preset-env",
             {
               targets: esbrowserslist,
             },
           ],
         ],
       }),
+      commonjs(),
+      nodeResolve(),
     ],
   };
   buildFormats.push(esConfig);
 }
 
-if (!argv.format || argv.format === 'cjs') {
+if (!argv.format || argv.format === "cjs") {
   const umdConfig = {
     ...baseConfig,
     external,
     output: {
       compact: true,
-      file: 'dist/vue-horizontal-list-autoscroll.ssr.js',
-      format: 'cjs',
-      name: 'VueHorizontalListAutoscroll',
-      exports: 'named',
+      file: "dist/vue-horizontal-list-autoscroll.ssr.js",
+      format: "cjs",
+      name: "VueHorizontalListAutoscroll",
+      exports: "named",
       globals,
     },
     plugins: [
+      replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue({
         ...baseConfig.plugins.vue,
@@ -117,32 +124,37 @@ if (!argv.format || argv.format === 'cjs') {
         },
       }),
       babel(baseConfig.plugins.babel),
+      commonjs(),
+      nodeResolve(),
     ],
   };
   buildFormats.push(umdConfig);
 }
 
-if (!argv.format || argv.format === 'iife') {
+if (!argv.format || argv.format === "iife") {
   const unpkgConfig = {
     ...baseConfig,
     external,
     output: {
       compact: true,
-      file: 'dist/vue-horizontal-list-autoscroll.min.js',
-      format: 'iife',
-      name: 'VueHorizontalListAutoscroll',
-      exports: 'named',
+      file: "dist/vue-horizontal-list-autoscroll.min.js",
+      format: "iife",
+      name: "VueHorizontalListAutoscroll",
+      exports: "named",
       globals,
     },
     plugins: [
+      replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       babel(baseConfig.plugins.babel),
+      commonjs(),
       terser({
         output: {
           ecma: 5,
         },
       }),
+      nodeResolve(),
     ],
   };
   buildFormats.push(unpkgConfig);

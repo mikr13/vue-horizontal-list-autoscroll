@@ -21,27 +21,31 @@
 
 A pure vue horizontal list implementation with minimal dependencies, ssr support, mobile friendly, touch friendly and responsive now with auto scroll
 
-This project is built on top of [vue-horizontal-list](https://github.com/fuxingloh/vue-horizontal-list), huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also.
-
-This project aim is to add support for:
-
-* Autoscroll
-
-* Autoscroll on different breakpoints (planned in 2.0.0)
-
-* Autoscroll & get back to beginning if flag is set to true
-
-* Vuetify (planned in 2.0.0)
+This project is built on top of [vue-horizontal-list](https://github.com/fuxingloh/vue-horizontal-list), huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also before version (1.1.5).
 
 ## Demo
-[![vue-horizontal-list-autoscroll gif](vue-horizontal-list-autoscroll.gif)](https://github.com/MiKr13/vue-horizontal-list-autoscroll)
 
+[All Examples]((https://mikr13.github.io/vue-horizontal-list-autoscroll/))
 
 ## Installation
-```shell script
+
+```sh
 npm i vue-horizontal-list-autoscroll
 # or
 yarn add vue-horizontal-list-autoscroll
+```
+
+## Basic usage
+
+```vue
+<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
+  <template v-slot:default="{item}">
+    <div class="item">
+      <h5>{{item.title}}</h5>
+      <p>{{item.content}}</p>
+    </div>
+  </template>
+</vue-horizontal-list-autoscroll>
 ```
 
 ## Features
@@ -59,7 +63,9 @@ yarn add vue-horizontal-list-autoscroll
 * Navigation control will show up dynamically for larger screen
 * Touch screen friendly
 * Minimal config setup
+* Custom prev & next icons support
 * Tested on chrome, edge and safari
+* [Examples](https://github.com/mikr13/vue-horizontal-list-autoscroll/tree/master/examples)
 
 ## Options
 
@@ -115,98 +121,6 @@ const options = {
 * Width between 576 - 768, show 2
 
 * Width catch all, show 3
-
-```vue
-<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
-  <template v-slot:default="{item}">
-    <div class="item">
-      <h5>{{item.title}}</h5>
-      <p>{{item.content}}</p>
-    </div>
-  </template>
-</vue-horizontal-list-autoscroll>
-```
-
-### Full Example
-
-```vue
-<template>
-  <div id="app">
-    <section>
-      <vue-horizontal-list-autoscroll :items="items" :options="options">
-        <template v-slot:default="{item}">
-          <div class="item">
-            <h5>{{item.title}}</h5>
-            <p>{{item.content}}</p>
-          </div>
-        </template>
-      </vue-horizontal-list-autoscroll>
-    </section>
-  </div>
-</template>
-
-<script>
-  import Vue from 'vue';
-  import VueHorizontalListAutoscroll from '@/vue-horizontal-list-autoscroll.vue';
-
-  export default Vue.extend({
-    name: 'ServeDev',
-    components: {
-      VueHorizontalListAutoscroll
-    },
-    data() {
-      return {
-        options: {
-          responsive: [
-            {end: 576, size: 1}, 
-            {start: 576, end: 768, size: 2},
-            {start: 768, end: 992, size: 3},
-            {size: 4}
-          ],
-          autoscroll: {
-            enabled: true,
-            interval: 15,
-            returnToStart: false // used to tell if after reaching the end of the list should the list return to beginning again
-          },
-          list: {
-            // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-            windowed: 1200,
-
-            // Because: #app {padding: 80px 24px;}
-            padding: 24
-          }
-        },  
-        items: [
-          {title: 'Item 0', content: 'Content item with description'},
-        ]
-      }
-    }
-  });
-</script>
-
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  #app {
-    max-width: 1400px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    padding: 80px 24px;
-  }
-
-  @media (min-width: 1200px) {
-    #app {
-      padding-left: 80px;
-      padding-right: 80px;
-    }
-  }
-</style>
-```
 
 ## Contributing
 For any question or feature request please feel free to create an [issue](https://github.com/MiKr13/vue-horizontal-list-autoscroll/issues/new) or [pull request](https://github.com/MiKr13/vue-horizontal-list-autoscroll/pulls).
