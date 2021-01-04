@@ -25,7 +25,7 @@ This project is built on top of [vue-horizontal-list](https://github.com/fuxingl
 
 ## Demo
 
-[All Examples]((https://mikr13.github.io/vue-horizontal-list-autoscroll/))
+[All Examples](https://mikr13.github.io/vue-horizontal-list-autoscroll/)
 
 ## Installation
 
