@@ -53,6 +53,7 @@ const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
   'vue',
+  'smoothscroll-polyfill'
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -61,6 +62,7 @@ const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
   vue: 'Vue',
+  'smoothscroll-polling': 'smoothscroll'
 };
 
 // Customize configs for individual targets

@@ -1,4 +1,5 @@
-<h1 align="center">👋 vue-horizontal-list-autoscroll 🕶</h1>
+# 👋 vue-horizontal-list-autoscroll 🕶
+
 <h3 align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.1.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/MiKr13/S3-Bucket-Download/#README" target="_blank">
@@ -23,8 +24,13 @@ A pure vue horizontal list implementation with minimal dependencies, ssr support
 This project is built on top of [vue-horizontal-list](https://github.com/fuxingloh/vue-horizontal-list), huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also.
 
 This project aim is to add support for:
+
 * Autoscroll
+
 * Autoscroll on different breakpoints (planned in 2.0.0)
+
+* Autoscroll & get back to beginning if flag is set to true
+
 * Vuetify (planned in 2.0.0)
 
 ## Demo
@@ -39,11 +45,12 @@ yarn add vue-horizontal-list-autoscroll
 ```
 
 ## Features
+
 * Lightweight implementation with 1 dependencies.
 * SSR supported
 * Mobile touch screen friendly
 * Invisible scroll bar for consistent Windows and MacOS browsing experience.
-* Autoscroll feature
+* Autoscroll feature with return to start feature
 * Snap to the nearest item in the horizontal-list when scrolling.
 * Windowed & Full-screen mode
   * The windowed mode will respect the container and not show overflowing item
@@ -55,6 +62,7 @@ yarn add vue-horizontal-list-autoscroll
 * Tested on chrome, edge and safari
 
 ## Options
+
 ```js
 const options = {
   item: {
@@ -68,6 +76,8 @@ const options = {
     enabled: true,
     // if enabled, the interval in seconds, by default 10 seconds
     interval: 15,
+    // if enabled, the list will autoscroll to beginning of the list once it reaches the end i.e. all list items are scrolled
+    returnToStart: true
   }
   list: {
     // css class for the parent of item
@@ -99,12 +109,15 @@ const options = {
 ## Examples
 
 ### Basic Responsive Usage
-- Width between 0 - 576, show 1
-- Width between 576 - 768, show 2
-- Width catch all, show 3
+
+* Width between 0 - 576, show 1
+
+* Width between 576 - 768, show 2
+
+* Width catch all, show 3
 
 ```vue
-<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true }}">
+<vue-horizontal-list-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
   <template v-slot:default="{item}">
     <div class="item">
       <h5>{{item.title}}</h5>
@@ -115,6 +128,7 @@ const options = {
 ```
 
 ### Full Example
+
 ```vue
 <template>
   <div id="app">
@@ -151,7 +165,8 @@ const options = {
           ],
           autoscroll: {
             enabled: true,
-            interval: 15
+            interval: 15,
+            returnToStart: false // used to tell if after reaching the end of the list should the list return to beginning again
           },
           list: {
             // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
