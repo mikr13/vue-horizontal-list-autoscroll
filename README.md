@@ -21,7 +21,7 @@
 
 A pure vue horizontal list implementation with minimal dependencies, ssr support, mobile friendly, touch friendly and responsive now with auto scroll
 
-This project is built on top of `vue-horizontal-list`, huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also before version (1.1.5).
+This project is built on top of `vue-horizontal-list`, huge shout out to [Fuxing Loh](https://github.com/fuxingloh) for laying the groundwork, every other option and configuration available there is valid here also before version (1.0.7).
 
 ## Demo
 
