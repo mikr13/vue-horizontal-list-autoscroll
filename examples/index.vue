@@ -18,6 +18,8 @@
 
     <auto-scroll />
 
+    <slide-show />
+
     <image-two />
 
     <image-three />
@@ -45,6 +47,7 @@ import ImageTwo from "./image-two";
 import ImageThree from "./image-three";
 import ImageFour from "./image-four";
 import ImageFive from "./image-five";
+import SlideShow from "./slide-show";
 
 export default Vue.extend({
   name: "Index",
@@ -59,6 +62,7 @@ export default Vue.extend({
     Responsive,
     FullWidth,
     Simple,
+    SlideShow,
     VueHorizontalListAutoscroll,
   },
   mounted() {

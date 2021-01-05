@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>AutoScroll without return to start</h2>
+    <h2>Auto Scroll</h2>
+    <h3>AutoScroll without repeat</h3>
+    <em>autoscroll doesn't work with slideshow enabled option set to true</em>
     <vue-horizontal-list-autoscroll :items="items" :options="options">
       <template v-slot:default="{ item }">
         <div class="item">
@@ -9,7 +11,8 @@
         </div>
       </template>
     </vue-horizontal-list-autoscroll>
-    <h2>AutoScroll with return to start</h2>
+    <h3>AutoScroll with repeat</h3>
+    <em>autoscroll doesn't work with slideshow enabled option set to true</em>
     <vue-horizontal-list-autoscroll :items="items" :options="options2">
       <template v-slot:default="{ item }">
         <div class="item">
@@ -40,8 +43,8 @@ export default {
         ],
         autoscroll: {
           enabled: true,
-          interval: 5, // in seconds
-          returnToStart: false, // used to tell if after reaching the end of the list should the list return to beginning again
+          interval: 5000, // in milliseconds
+          repeat: false, // used to tell if after reaching the end of the list should the list return to beginning again
         },
         list: {
           // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
@@ -60,8 +63,8 @@ export default {
         ],
         autoscroll: {
           enabled: true,
-          interval: 5, // in seconds
-          returnToStart: true, // used to tell if after reaching the end of the list should the list return to beginning again
+          interval: 5000, // in milliseconds
+          repeat: true, // used to tell if after reaching the end of the list should the list return to beginning again
         },
         list: {
           // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
@@ -72,7 +75,10 @@ export default {
         },
       },
       items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
-        return { title: `Auto play ${i}`, content: `Auto play, 5s/5000ms.` };
+        return {
+          title: `Auto scroll ${i}`,
+          content: `Auto scroll, 5s/5000ms.`,
+        };
       }),
     };
   },

@@ -1,6 +1,6 @@
 {
   "name": "vue-horizontal-list-autoscroll",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "A pure vue ssr friendly horizontal list implementation with autoscroll feature.",
   "author": "Mihir Kumar <https://linkedin.com/in/mikr13>",
   "contributors": [
@@ -12,8 +12,6 @@
   },
   "bugs": "https://github.com/MiKr13/vue-horizontal-list-autoscroll/issues",
   "keywords": [
-    "vue",
-    "vuejs",
     "horizontal",
     "scroll",
     "autoscroll",
@@ -22,7 +20,9 @@
     "card",
     "snapping",
     "ssr",
-    "airbnb list"
+    "airbnb list",
+    "slideshow",
+    "slide-show"
   ],
   "license": "MIT",
   "private": false,

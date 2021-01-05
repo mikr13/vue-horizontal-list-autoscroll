@@ -115,7 +115,11 @@ export default {
       /**
        * Interval of the autoscroll
        */
-      interval: null,
+      autoscrollInterval: null,
+      /**
+       * Interval of the slideshow
+       */
+      slideshowInterval: null,
     };
   },
   mounted() {
@@ -126,11 +130,30 @@ export default {
 
     this.$resize();
     window.addEventListener("resize", this.$resize);
-    this._options.autoscroll.enabled && this.autoscroll();
+
+    // If slideshow enabled option is set, autoscroll will be disabled
+    if (this._options.slideshow.enabled) {
+      this.runSlideshow();
+    } else {
+      this._options.autoscroll.enabled && this.autoscroll();
+    }
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.$resize);
-    clearInterval(this.interval);
+    clearInterval(this.autoscrollInterval);
+    if (this.slideshowInterval) {
+      clearInterval(this.slideshowInterval);
+    }
+  },
+  watch: {
+    "options.slideshow.enabled"(val) {
+      if (!val) {
+        this.stopSlideshow();
+      } else {
+        this.stopAutoscroll();
+        this.runSlideshow();
+      }
+    },
   },
   computed: {
     _items() {
@@ -143,7 +166,6 @@ export default {
     _length() {
       return this._items.length;
     },
-
     _options() {
       const options = this.options;
 
@@ -164,11 +186,9 @@ export default {
               options.autoscroll &&
               parseInt(options.autoscroll.interval, 10) >= 1 &&
               parseInt(options.autoscroll.interval, 10)) ||
-            10,
-          returnToStart:
-            (options &&
-              options.autoscroll &&
-              options.autoscroll.returnToStart) ||
+            5000,
+          repeat:
+            (options && options.autoscroll && options.autoscroll.repeat) ||
             false,
         },
         item: {
@@ -190,6 +210,16 @@ export default {
           { start: 992, end: 1200, size: 4 },
           { start: 1200, size: 5 },
         ],
+        slideshow: {
+          enabled:
+            (options && options.slideshow && options.slideshow.enabled) ||
+            false,
+          interval:
+            (options && options.slideshow && options.slideshow.interval) ||
+            5000,
+          repeat:
+            (options && options.slideshow && options.slideshow.repeat) || false,
+        },
       };
     },
 
@@ -297,36 +327,61 @@ export default {
         this.position * this._options.item.padding;
       this.$refs.list.scrollTo({ top: 0, left: left, behavior: "smooth" });
     },
-
     /**
      * Go to a set of previous items
      */
     prev() {
       this.go(this.position - this._size);
     },
-
     /**
      * Go to a set of next items
      */
     next() {
       this.go(this.position + this._size);
     },
-
     /**
-     * autoscroll list on interval provided as option, if returnToStart is true, returns to beginning once list end is reacher
+     * autoscroll list on interval provided as option, if repeat is true, returns to beginning once list end is reacher
      */
     autoscroll() {
-      this.interval = setInterval(() => {
+      this.autoscrollInterval = setInterval(() => {
         if (this._hasNext) {
           this.next();
         } else {
-          if (this._options.autoscroll.returnToStart) {
-            while (this._hasPrev) {
-              this.prev();
-            }
+          if (this._options.autoscroll.repeat) {
+            this.position = 0;
+            this.go(this.position);
           }
         }
-      }, this._options.autoscroll.interval * 1000);
+      }, this._options.autoscroll.interval);
+    },
+    /**
+     * stop auto scroll
+     */
+    stopAutoscroll() {
+      clearInterval(this.slideshowInterval);
+    },
+    /**
+     * slide show on interval provided as option
+     */
+    runSlideshow() {
+      this.slideshowInterval = setInterval(() => {
+        if (
+          this._options.slideshow.repeat &&
+          this.position === this._length - this._size
+        ) {
+          this.position = 0;
+          this.go(this.position);
+        } else {
+          this.position += 1;
+          this.go(this.position);
+        }
+      }, this._options.slideshow.interval);
+    },
+    /**
+     * stop slide show
+     */
+    stopSlideshow() {
+      clearInterval(this.slideshowInterval);
     },
   },
 };

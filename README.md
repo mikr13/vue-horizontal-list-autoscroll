@@ -38,7 +38,7 @@ yarn add vue-horizontal-list-autoscroll
 ## Basic usage
 
 ```vue
-<vue-horizontal-list-autoscroll-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, returnToStart: true }}">
+<vue-horizontal-list-autoscroll-autoscroll :items="items" :options="{responsive: [{end: 576, size: 1}, {start: 576, end: 768, size: 2},{size: 3}], autoscroll:{ enabled: true, repeat: true }}">
   <template v-slot:default="{item}">
     <div class="item">
       <h5>{{item.title}}</h5>
@@ -54,7 +54,8 @@ yarn add vue-horizontal-list-autoscroll
 * SSR supported
 * Mobile touch screen friendly
 * Invisible scroll bar for consistent Windows and MacOS browsing experience.
-* Autoscroll feature with return to start feature
+* Autoscroll feature with return to start (repeat) feature
+* Slideshow feature with return to start (repeat) feature
 * Snap to the nearest item in the horizontal-list when scrolling.
 * Windowed & Full-screen mode
   * The windowed mode will respect the container and not show overflowing item
@@ -80,11 +81,19 @@ const options = {
   autoscroll: {
     // auto scroll feature enabled or not
     enabled: true,
-    // if enabled, the interval in seconds, by default 10 seconds
-    interval: 15,
+    // if enabled, the interval in milliseconds, by default 5000 milliseconds
+    interval: 15000,
     // if enabled, the list will autoscroll to beginning of the list once it reaches the end i.e. all list items are scrolled
-    returnToStart: true
+    repeat: true
   }
+  slideshow: {
+    // slide show feature enabled or not
+    enabled: true,
+    // if enabled, the interval in milliseconds, by default 5000 milliseconds
+    interval: 15000,
+    // if enabled, the list will autoscroll to beginning of the list once it reaches the end i.e. all list items are scrolled
+    repeat: false
+  },
   list: {
     // css class for the parent of item
     class: '', 
