@@ -85,7 +85,7 @@ const options = {
     interval: 15000,
     // if enabled, the list will autoscroll to beginning of the list once it reaches the end i.e. all list items are scrolled
     repeat: true
-  }
+  },
   slideshow: {
     // slide show feature enabled or not
     enabled: true,
