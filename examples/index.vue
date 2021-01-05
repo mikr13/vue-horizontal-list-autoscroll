@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <h1>Vue Horizontal List</h1>
+    <h1>Vue Horizontal List Autoscroll</h1>
     <p>
       You can find all examples here
       <a
-        href="https://github.com/mikr13/vue-horizontal-list/tree/master/examples"
+        href="https://github.com/mikr13/vue-horizontal-list-autoscroll/tree/master/examples"
         target="_blank"
         >in this folder</a
       >.
