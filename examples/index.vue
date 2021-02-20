@@ -9,6 +9,13 @@
         >in this folder</a
       >.
     </p>
+    <p style="font-style: italic">
+      <a
+        href="https://www.npmjs.com/package/vue-horizontal-list-autoscroll"
+        target="_blank"
+        >npm link</a
+      >.
+    </p>
 
     <simple />
 
