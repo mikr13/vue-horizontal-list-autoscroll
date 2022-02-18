@@ -55,7 +55,7 @@
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@vue/cli-plugin-babel": "^4.4.5",
-    "@vue/cli-service": "^4.4.5",
+    "@vue/cli-service": "^5.0.1",
     "cross-env": "^6.0.3",
     "minimist": "^1.2.5",
     "rollup": "^1.32.1",
